@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TRABAJO UNIVERSIDAD - GRUPO 1</title>
     
-    <style>
+<style>
         /* Variables CSS para colores */
         :root {
             --primary-color: #007bff; /* Azul de Alicorp (ejemplo) */
@@ -54,6 +54,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative; /* Necesario para posicionar el botón del menú */
         }
 
         .navbar-logo img {
@@ -108,6 +109,18 @@
 
         .cta-nav-button:hover {
             background-color: #0056b3;
+        }
+
+        /* Botón de Hamburguesa (Mobile) */
+        .menu-toggle {
+            display: none; /* Oculto por defecto en escritorio */
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--dark-gray);
+            cursor: pointer;
+            padding: 5px;
+            z-index: 1001; /* Asegura que esté por encima del menú colapsado */
         }
 
         /* Hero Section */
@@ -349,21 +362,49 @@
 
         @media (max-width: 768px) {
             .navbar {
-                flex-direction: column;
-                align-items: flex-start;
+                flex-wrap: wrap; /* Permite que los elementos se envuelvan si es necesario */
+                align-items: center; /* Alineación vertical para logo y toggle */
             }
+
             .navbar-nav {
                 flex-direction: column;
                 width: 100%;
                 margin-top: 15px;
+                /* Propiedades para el menú colapsable */
+                display: none; /* Oculto por defecto en móvil */
+                position: absolute;
+                top: 100%; /* Coloca el menú justo debajo del header */
+                left: 0;
+                background-color: var(--white); /* Fondo para el menú desplegado */
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+                padding: 10px 0;
+                z-index: 999;
+                border-radius: var(--border-radius);
             }
+
+            .navbar-nav.active {
+                display: flex; /* Mostrar cuando la clase 'active' está presente */
+            }
+
             .nav-item {
                 margin: 10px 0;
-            }
-            .cta-nav-button {
-                margin-top: 15px;
                 width: 100%;
-                text-align: center;
+                text-align: center; /* Centrar los ítems del menú */
+            }
+
+            .nav-link, .cta-nav-button {
+                padding: 10px 0; /* Padding para hacer los enlaces más clickeables */
+                width: 100%; /* Ocupar todo el ancho disponible */
+                justify-content: center; /* Centrar el contenido de los enlaces */
+            }
+
+            .cta-nav-button {
+                margin-top: 10px; /* Ajuste de margen para el botón CTA */
+            }
+
+            /* Mostrar el botón de hamburguesa */
+            .menu-toggle {
+                display: block;
             }
 
             .hero-section {
@@ -427,8 +468,8 @@
             <div class="navbar-logo">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Alicorp.svg/400px-Alicorp.svg.png" alt="Logo Alicorp">
             </div>
-            <nav>
-                <ul class="navbar-nav">
+            <button class="menu-toggle" aria-label="Toggle navigation">&#9776;</button> 
+            <nav id="mainNav"> <ul class="navbar-nav">
                     <li class="nav-item"><a href="#home" class="nav-link"><i class="fas fa-home"></i> Inicio</a></li>
                     <li class="nav-item"><a href="#products-services" class="nav-link"><i class="fas fa-box-open"></i> Productos y Servicios</a></li>
                     <li class="nav-item"><a href="#about" class="nav-link"><i class="fas fa-building"></i> Nosotros</a></li>
@@ -453,37 +494,37 @@
                 <h2 class="text-center mb-40">Nuestros Productos y Soluciones Estratégicas</h2>
                 <div class="product-grid">
                     <div class="product-card">
-                        <img src="consumo masivo.jpg" alt="Productos de Consumo Masivo">
+                        <img src="https://via.placeholder.com/200x180?text=Consumo+Masivo" alt="Productos de Consumo Masivo">
                         <h3>Consumo Masivo</h3>
                         <p>Descubre nuestra amplia gama de productos de consumo masivo, desde alimentos básicos hasta cuidado personal y del hogar. Calidad y confianza para tu negocio y tu familia.</p>
                         <a href="carrito.html" class="product-link">Ver Catálogo <i class="fas fa-arrow-right"></i></a>
                     </div>
                     <div class="product-card">
-                        <img src="nutricion animal.jpg" alt="Productos de Nutrición Animal">
+                        <img src="https://via.placeholder.com/200x180?text=Nutricion+Animal" alt="Productos de Nutrición Animal">
                         <h3>Nutrición Animal</h3>
                         <p>Soluciones innovadoras en nutrición para aves, cerdos, acuicultura y mascotas. Mejoramos la productividad y el bienestar animal con fórmulas especializadas.</p>
                         <a href="#" class="product-link">Más Información <i class="fas fa-arrow-right"></i></a>
                     </div>
                     <div class="product-card">
-                        <img src="solucion logistica.jpg" alt="Soluciones Industriales y Logísticas">
+                        <img src="https://via.placeholder.com/200x180?text=Logistica+Inteligente" alt="Soluciones Industriales y Logísticas">
                         <h3>Soluciones Logísticas Inteligentes</h3>
                         <p>Optimiza tu cadena de suministro con nuestra gestión logística. Desde almacenamiento hasta distribución, aseguramos eficiencia y trazabilidad en cada etapa.</p>
                         <a href="#" class="product-link">Descubre Cómo <i class="fas fa-arrow-right"></i></a>
                     </div>
                     <div class="product-card">
-                        <img src="bodega.jpg" alt="Servicio para Bodegas y Mayoristas">
+                        <img src="https://via.placeholder.com/200x180?text=Gestion+Bodegas" alt="Servicio para Bodegas y Mayoristas">
                         <h3>Gestión de Pedidos para Bodegas</h3>
                         <p>Accede a nuestro sistema de pedidos en tiempo real, diseñado para bodegas y mayoristas. Controla tu inventario, precios especiales y seguimiento de tus entregas.</p>
                         <a href="carrito.html" class="product-link">Empieza a Pedir <i class="fas fa-arrow-right"></i></a>
                     </div>
                     <div class="product-card">
-                        <img src="nutricion animal.jpg" alt="Innovación y Desarrollo Digital">
+                        <img src="https://via.placeholder.com/200x180?text=Innovacion+Digital" alt="Innovación y Desarrollo Digital">
                         <h3>Innovación y Desarrollo Digital</h3>
                         <p>Impulsamos la transformación digital con herramientas y plataformas a medida, mejorando la interacción con nuestros clientes y la eficiencia operativa.</p>
                         <a href="#" class="product-link">Conoce Más <i class="fas fa-arrow-right"></i></a>
                     </div>
                     <div class="product-card">
-                        <img src="soporte.jpg" alt="Soporte y Asesoría al Aliado">
+                        <img src="https://via.placeholder.com/200x180?text=Soporte" alt="Soporte y Asesoría al Aliado">
                         <h3>Soporte y Asesoría al Aliado</h3>
                         <p>Ofrecemos acompañamiento y soporte técnico especializado a nuestros clientes y socios estratégicos para asegurar el éxito conjunto y resolver tus dudas rápidamente.</p>
                         <a href="#" class="product-link">Obtener Soporte <i class="fas fa-arrow-right"></i></a>
@@ -531,5 +572,40 @@
             <p>&copy; 2025 Alicorp. Todos los derechos reservados.</p>
         </div>
     </footer>
+
+    <script>
+        // Obtener referencias a los elementos del DOM
+        const menuToggle = document.querySelector('.menu-toggle');
+        const mainNav = document.getElementById('mainNav'); // Cambiado de navbar-nav a mainNav para englobar el nav
+
+        // Función para cerrar el menú
+        function closeMenu() {
+            mainNav.classList.remove('active');
+        }
+
+        // 1. Añadir un "escuchador de eventos" al botón de hamburguesa
+        menuToggle.addEventListener('click', function() {
+            mainNav.classList.toggle('active'); // Alterna la clase 'active' para mostrar/ocultar el menú
+        });
+
+        // 2. Añadir "escuchadores de eventos" a los enlaces de navegación
+        // Esto cerrará el menú cuando se haga clic en un enlace (para navegación interna)
+        const navLinks = mainNav.querySelectorAll('.nav-link, .cta-nav-button');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                // Pequeño retraso para permitir que la navegación ocurra antes de cerrar
+                setTimeout(closeMenu, 300); 
+            });
+        });
+
+        // 3. Opcional: Cerrar el menú si se hace clic fuera de él (para una experiencia de usuario más intuitiva)
+        document.addEventListener('click', function(event) {
+            // Si el clic no fue dentro de la navegación ni en el botón de toggle
+            if (!mainNav.contains(event.target) && !menuToggle.contains(event.target) && mainNav.classList.contains('active')) {
+                closeMenu();
+            }
+        });
+
+    </script>
 </body>
 </html>
